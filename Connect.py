@@ -14,10 +14,11 @@ class Connect:
     def delete_database(self):
         try:
             cur = self.connection_database()
-            drop_database = "DROP DATABASE python"
+            #DROP DATABASE python
+            drop_database = "drop database if exists python"
             cur.execute(drop_database)
             cur.close()
-            print("deleted successfully")
+            print("Deleted Successfully!")
         except Exception as e:
             print (e)
             print ("Cannot Delete Database")
@@ -31,10 +32,14 @@ class Connect:
             self.restore_database()
         except Exception as e:
             print (e)
-            print ("Cannot Create Database")
+            print ("Cannot Create Database!")
             try:
                 self.delete_database()
-                self.create_database()
+                try:
+                    self.create_database()
+                except Exception as e:
+                    print ("Cannot Create Database after removed alrey exists")
+
             except Exception as e:
                 print ("Cannot Delete Database in def create_database")
 
@@ -47,10 +52,10 @@ class Connect:
             cur.close()
         except Exception as e:
             print (e)
-            print ("Cannot Restore Database")
+            print ("Cannot Restore Database!")
 
 if __name__ == '__main__':
 
     database_conn = Connect()
     database_conn.create_database()
-    database_conn.delete_database()
+    #database_conn.delete_database()
