@@ -38,7 +38,7 @@ class Connect:
                 try:
                     self.create_database()
                 except Exception as e:
-                    print ("Cannot Create Database after removed alrey exists")
+                    print ("Cannot Create Database after removed. It already exists")
 
             except Exception as e:
                 print ("Cannot Delete Database in def create_database")
